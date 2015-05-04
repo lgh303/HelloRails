@@ -2,11 +2,13 @@
   <div class="banner-inner container clearfix">
     <h1>It's Party Time!</h1>
     <p class="subheading">到时聚聚，聊聊程序</p>
-    <% if current_user %>
     <div class="home-banner-links">
+    <% if current_user %>
       <%= link_to "发布新活动", new_issue_path, class: "banner-btn btn" %>
-    </div>
+    <% else %>
+      <%= link_to "登录以发布新活动", login_path, class: "banner-btn btn" %>
     <% end %>
+    </div>
   </div>
 </div>
 <div class="issue-list-header">

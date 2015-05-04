@@ -28,5 +28,7 @@
   </div>
   <% if current_user %>
     <%= render partial: "shared/comment_box", locals: {issue: @issue, comment: @comment} %>
+  <% else %>
+    <%= link_to "登录以回复", login_path, class: "banner-btn btn" %>
   <% end %>
 </div>
