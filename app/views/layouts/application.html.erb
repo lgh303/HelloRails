@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hellorails</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body class="<%= params[:controller] + '-' + params[:action] %>">
+  <div class="navbar clearfix">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        HelloRails
+      </a>
+      <ul class="nav left">
+        <li><%= link_to t("navbar.about"), "/about" %></li>
+      </ul>
+      <ul class="nav right">
+        <% if current_user %>
+          <li><%= link_to current_user.name, "#" %></li>
+          <li><%= link_to t("navbar.logout"), logout_path, method: "delete" %></li>
+        <% else %>
+          <li><%= link_to t("navbar.login"), login_path %></li>
+          <li><%= link_to t("navbar.signup"),signup_path %></li>
+        <% end  %>
+      </ul>
+    </div>
+  </div>
+
+  <% if flash.notice %>
+    <div class="notice"><%= flash.notice %></div>
+  <% end %>
+
+  <%= yield %>
+
+  <div class="footer">
+    <div class="container">
+      footer
+    </div>
+  </div>
+
+  <script>
+   var hideNotice = function(){
+       $(".notice").fadeOut("slow");
+   }
+   setTimeout(hideNotice, 3000);
+  </script>
+
+</body>
+</html>
